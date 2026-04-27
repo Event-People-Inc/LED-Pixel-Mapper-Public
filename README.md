@@ -52,13 +52,13 @@ LED Pixel Mapper (LPM) is a comprehensive software solution designed to streamli
 
 Want to see LPM in action? Check out our 7-part video walkthrough series on YouTube to learn the software inside and out:
 
-1. [Initial Setup & Licensing](LINK_TO_VIDEO_1)
-2. [The Canvas Page Overview](LINK_TO_VIDEO_2)
-3. [Select Mode & Canvas Building](LINK_TO_VIDEO_3)
-4. [Routing Mode & Data Paths](LINK_TO_VIDEO_4)
-5. [Circuit Mode & Power Calculations](LINK_TO_VIDEO_5)
-6. [Redundancy Planner](LINK_TO_VIDEO_6)
-7. [Exports & Production Documentation](LINK_TO_VIDEO_7)
+1. [Initial Setup & Licensing](https://youtu.be/uUklnGishSs)
+2. [The Canvas Page Overview](https://youtu.be/_POOIHc5TeM)
+3. [Select Mode & Canvas Building](https://youtu.be/0LYH_04o4KI)
+4. [Routing Mode & Data Paths](https://youtu.be/pJknpON4xfM)
+5. [Circuit Mode & Power Calculations](https://youtu.be/ec45uZghges)
+6. [Redundancy Planner](https://youtu.be/prmH2ZN_rYw)
+7. [Exports & Production Documentation](https://youtu.be/z85iOOfkedM)
 
 ---
 
@@ -72,14 +72,9 @@ Want to see LPM in action? Check out our 7-part video walkthrough series on YouT
 
 LPM was built *by* LED techs *for* LED techs. We are constantly updating our hardware library and adding new workflow tools. 
 
-* **Missing a Tile or Processor?** Submit a request via our [Hardware Request Form](INSERT_FORM_LINK).
-* **Found a Bug or Have a Feature Idea?** Please open an [Issue](INSERT_GITHUB_ISSUES_LINK) on this repository or reach out directly at [INSERT_EMAIL].
+* **Missing a Tile or Processor?** Submit a request via our [Hardware Request Form](https://forms.gle/w4mhaUq3pyUCcpoA7).
+* **Found a Bug or Have a Feature Idea?** Please open an [Issue](INSERT_GITHUB_ISSUES_LINK) on this repository or reach out directly at [Kris.siwak@eventpeople.ca].
 
----
-
-## 📜 License
-
-*(Note to developer: Insert your software licensing terms here, e.g., "Copyright © 2026 [Your Name/Company]. All rights reserved. See LICENSE.md for details.")*
 
 🌐 **[Visit the website](https://event-people-inc.github.io/LED-Pixel-Mapper-Public/)**
 🛒 **[Download on Gumroad](https://eventpeople.gumroad.com/l/LEDPixelMapper)**
