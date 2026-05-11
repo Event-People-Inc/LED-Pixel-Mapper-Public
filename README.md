@@ -6,51 +6,78 @@ LED Pixel Mapper (LPM) is a comprehensive software solution designed to streamli
 
 ---
 
+## 🚀 What's New in v1.6.1
+
+- **NovaStar COEX 5G Support** — MX6000 Pro (5G) and MX2000 Pro (5G) with CVT8-5G fiber converters and CA50E / XA50 Pro receiver cards
+- **Accurate COEX 1G Capacity** — Per-tile receiver card class calculation (Enhanced vs Standard). Mixed classes on the same port handled correctly. Hard capacity stop enforced on every route
+- **Receiver Card Class Badge** — Each tile profile shows a color-coded badge (Enhanced / Standard / 5G / N/A), editable at any time
+- **MX40 Pro 40-Port Mode** — Now supports up to 4 CVT boxes for 40 fully routable ports
+- **Cross-Wall Circuits** — A single power circuit can now span tiles across multiple walls. Click any visible tile and the wall tab switches automatically
+- **Circuit Routing — No Wall Lock** — Circuits are no longer locked to the active wall tab when routing starts. Route tiles from any wall freely
+- **Move Port Tiles** — Right-click any port to move its entire chain to another port
+- **Auto-Update** — The app silently checks for updates and prompts when a new version is available
+- **About Dialog** — File → About shows version, build date, and license status
+
+---
+
 ## 🚀 Key Features
 
 ### ⚙️ Project Setup & Hardware Configuration
 * **Massive Hardware Library:** Access over 500+ pre-built LED tile profiles from major brands, or create and save your own custom tile profiles.
-* **Processor & Extension Integration:** Natively add popular processors (e.g., Novastar MX40 Pro, MX30) and fiber extension boxes (like CVTs) directly to your project.
-* **Color Depth Flexibility:** Toggle between standard 8-bit and high-dynamic-range 10-bit color modes to automatically adjust your port capacities.
+* **Processor & Extension Integration:** Natively add popular processors including NovaStar COEX 5G (MX6000 Pro 5G, MX2000 Pro 5G with CVT8-5G), COEX 1G (MX20, MX30, MX40 Pro in 20 or 40-port mode, MX2000 Pro, MX6000 Pro), legacy NovaStar, Brompton Tessera, and Megapixie HELIOS.
+* **Color Depth Flexibility:** Toggle between standard 8-bit and high-dynamic-range 10-bit color modes. Port capacities adjust automatically based on processor family and installed receiver cards.
 * **Custom Resolutions:** Choose from standard resolution presets (720p up to 8K) or input custom pixel dimensions.
 * **Multi-Language Support:** Fully localized in English, French, and Spanish.
 
-### 🖥️ Workspace & Canvas Management (Select Mode)
+### 🖥️ Workspace & Canvas Management
 * **Multi-Wall Organization:** Create, rename, delete, and rearrange multiple walls using a dedicated tab system.
 * **Smart Layout Tools:** Drop perfectly spaced blocks of tiles, move them with pixel-perfect accuracy using coordinate calculators, and utilize industry-standard alignment/distribution tools.
 * **Grouping & Locking:** Lock tiles into place or group them into single units to prevent accidental changes during complex builds.
 * **Breakaway Walls:** Build one massive layout and instantly slice it into smaller, manageable tabs using the "New Wall & Move Here" feature.
-* **Bulk Tile Numbering:** Automatically number tiles (independent of data routing) in four directions (L-R, R-L, T-B, B-T) with custom starting numbers.
+* **Bulk Tile Numbering:** Automatically number tiles (independent of data routing) in four directions with custom starting numbers.
+* **Shift+Scroll Pan:** Hold Shift and scroll to pan the canvas left and right.
 
 ### 🔌 Data Routing (Route Mode)
-* **Live Capacity Tracking:** Watch the port capacity progress bar fill up in real-time as you route, ensuring you never overload an output.
+* **Accurate Port Capacity:** NovaStar COEX 1G capacity is calculated per tile based on the installed receiver card — Enhanced class (A10s Pro / A8s Pro: 494,792 px/port) or Standard class (329,861 px/port) in 10-bit mode. NovaStar COEX 5G: 2,951,200 px/port @8-bit. Mixed receiver classes on the same port are handled accurately.
+* **Hard Capacity Stop:** Users are hard-blocked from routing past port capacity via both click and arrow-key routing. The only thing that can push a port past capacity is the program itself.
+* **Receiver Card Class Badge:** Each tile profile shows a color-coded badge (Enhanced / Standard / 5G / N/A) indicating which receiver card is installed. Clickable to change at any time.
 * **Keyboard Routing:** Use keyboard arrow keys to rapidly route data paths across tiles, mimicking industry-standard processor software.
-* **Port Customization:** Rename ports, assign specific ports to specific walls, and color-code data lines for extreme visual clarity.
-* **View Toggles:** Customize your canvas by turning connection paths, direction arrows, start/end markers, and chain labels on or off.
+* **Move Port Tiles:** Right-click any port to move its entire tile chain to another port with a single action.
+* **Multi-Select Wall Assignment:** Ctrl+click multiple ports, then right-click to assign them all to a wall at once.
+* **Port Customization:** Rename ports, assign specific ports to specific walls, and color-code data lines for visual clarity.
+* **View Toggles:** Turn connection paths, direction arrows, start/end markers, and chain labels on or off.
 
 ### ⚡ Power Distribution (Circuit Mode)
 * **Socapex & Single Circuits:** Add independent circuits or drop in full 6-circuit Socapex bundles.
-* **Live Load Calculations:** Automatically calculate total Wattage and Amperage in real-time as you route power, with a quick toggle for 110V vs. 220V regional standards.
-* **Advanced Branching (Twofers):** Split a single circuit into Branch A and Branch B on the canvas while keeping the combined power tally perfectly accurate.
+* **Cross-Wall Circuits:** A single circuit can span tiles across multiple walls. Click any tile visible on the canvas — including ghost outlines from other walls — and the wall tab switches automatically. Arrow keys navigate across wall boundaries when tiles are physically touching.
+* **Live Load Calculations:** Automatically calculate total Wattage and Amperage in real-time, with a quick toggle for 110V vs. 220V.
+* **Advanced Branching (Twofers):** Split a single circuit into Branch A and Branch B on the canvas while keeping the combined power tally accurate.
 * **Connector Tracking:** Specify Edison, PowerCON, or True1 connectors for each circuit to auto-generate accurate cabling pull lists.
+* **Canvas Annotation Toggles:** Toggle connection paths, direction arrows, step badges, and start/end labels independently from the Circuit Display panel.
 
 ### 🛡️ System Redundancy
 * **Visual Redundancy Planner:** A dedicated, drag-and-drop interface for building out your show's safety net.
-* **Port-to-Port Backups:** Drag one port onto another (e.g., Port B onto Port A) to instantly establish a failover line.
-* **Auto-Assign Backups:** Use the Split Backup or Sequential Backup buttons to let the software auto-route all redundant ports instantly.
+* **Port-to-Port Backups:** Drag one port onto another to instantly establish a failover line.
+* **Auto-Assign Backups:** Use Split Backup or Sequential Backup buttons to auto-route all redundant ports instantly.
 * **Processor Mirroring:** Drag an entire secondary processor onto your primary processor to automatically pair all corresponding outputs.
 
 ### 📄 Exports & Documentation
-* **One-Click "Export All":** Generate all paperwork, maps, and reports instantly into a neat ZIP file.
-* **Pixel & Flow Maps:** Export visually stunning Canvas Maps, Wall Maps, Data Flow Maps, and Power Flow Maps (with "Front View" / "Back View" watermarks).
-* **Production Reports:** Generate raw CSV data files for inventory pulls, or export highly stylized HTML/PDF reports (stamped with your custom company logo) for your crew's clipboards.
-* **Test Cards:** Export perfect-resolution PNGs or SVGs to load onto your processors for on-site color and black-level testing.
+* **One-Click "Export All":** Generate all paperwork, maps, and reports instantly into a single ZIP file.
+* **Type-Specific Annotations:** Each export type (Pixel Map, Data Flow Map, Power Flow Map) has its own independent annotation panel — toggle tile labels, chain badges, icons, legends, and wattage badges separately.
+* **Pixel & Flow Maps:** Export Canvas Maps, Wall Maps, Data Flow Maps, and Power Flow Maps (with "Front View" / "Back View" watermarks).
+* **Production Reports:** Generate CSV data files for inventory pulls, or export formatted HTML/PDF reports branded with your company logo.
+* **Test Cards:** Export perfect-resolution PNGs or SVGs for on-site color and black-level testing.
+
+### 🗂️ System & File Management
+* **Auto-Update:** The app silently checks for new versions in the background. An "Update Now / Skip" prompt appears when a new version is available. Opt into automatic updates via a checkbox — off by default.
+* **About Dialog:** File → About shows the current version, build date, and license status.
+* **Undo / Redo:** Full history with Ctrl+Z / Ctrl+X keyboard shortcuts.
 
 ---
 
 ## 📺 Video Walkthrough Series
 
-Want to see LPM in action? Check out our 7-part video walkthrough series on YouTube to learn the software inside and out:
+Want to see LPM in action? Check out our 7-part video walkthrough series on YouTube:
 
 1. [Initial Setup & Licensing](https://youtu.be/uUklnGishSs)
 2. [The Canvas Page Overview](https://youtu.be/_POOIHc5TeM)
@@ -62,19 +89,20 @@ Want to see LPM in action? Check out our 7-part video walkthrough series on YouT
 
 ---
 
-## 🛠 Installation & Usage
+## 🛠 Installation
 
-*(Note to developer: Add your specific installation instructions here, e.g., "Download the latest release from the Releases tab, run the installer, and enter your license key via File > Licensing.")*
+Download the latest release from the [Releases](https://github.com/Event-People-Inc/LED-Pixel-Mapper-Public/releases) page, run the installer, and enter your license key via **File → Licensing**.
 
 ---
 
 ## 🤝 Feedback & Feature Requests
 
-LPM was built *by* LED techs *for* LED techs. We are constantly updating our hardware library and adding new workflow tools. 
+LPM was built *by* LED techs *for* LED techs. We are constantly updating our hardware library and adding new workflow tools.
 
 * **Missing a Tile or Processor?** Submit a request via our [Hardware Request Form](https://forms.gle/w4mhaUq3pyUCcpoA7).
-* **Found a Bug or Have a Feature Idea?** Please open an [Issue](INSERT_GITHUB_ISSUES_LINK) on this repository or reach out directly at [Kris.siwak@eventpeople.ca].
+* **Found a Bug or Have a Feature Idea?** Reach out directly at [kris.siwak@eventpeople.ca](mailto:kris.siwak@eventpeople.ca).
 
+---
 
 🌐 **[Visit the website](https://event-people-inc.github.io/LED-Pixel-Mapper-Public/)**
 🛒 **[Download on Gumroad](https://eventpeople.gumroad.com/l/LEDPixelMapper)**
