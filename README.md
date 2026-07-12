@@ -6,6 +6,19 @@ LED Pixel Mapper (LPM) is a comprehensive software solution designed to streamli
 
 ---
 
+## 🚀 What's New in v1.7.1 (Bug Fixes & Refinements)
+
+* **Mac Export Reliability** — Data and Power Flow map exports now always render in software, fixing blank/empty output that some Apple Silicon Macs produced in Dark and Light styles.
+* **Redundancy Planner Rebuilt** — The old flat wall of port chips is gone. Click a processor to open a drill-down tree — output cards, then CVT boxes, then ports — and drag a whole card or CVT box onto another to back it up in one move. Cards can now be given a custom name, which carries through to the PDF report and every other export.
+* **PDF Redundancy Plan Redrawn** — The Redundancy Plan page of the PDF report now mirrors the same visual tree as the planner, with color-coded port chips and backup badges, instead of a flat table of port pairs.
+* **2,785 Tiles** — The built-in tile library was rebuilt from the manufacturer master sheet with corrected pixel dimensions, physical sizes, and power — every existing tile preserved, ~1,790 new panels added.
+* **Edit Custom Tiles & Processors** — User Tiles and My Processors can now be edited in place, not just created. Saving/editing custom hardware is a Pro feature.
+* **Rotation Shortcuts** — Cmd/Ctrl+L and Cmd/Ctrl+R rotate the current selection left/right; copy-paste now preserves tile rotation.
+* **Port Naming Fix** — The Letters/Numbers preference now correctly applies to ports inside H-Series cards and COEX CVT boxes, which it previously skipped.
+* **Wall Tab Scrolling** — The wall tab strip and move/copy-to-wall menus scroll properly once a project has many walls.
+
+---
+
 ## 🚀 What's New in v1.7.0 (Massive Pre-Production Update)
 
 * **Global Preferences & Light Mode** — Customize your UI with the highly requested Light Mode. Set default port naming schemes, choose Metric vs. Imperial units, and define custom High/Low voltages for international power calculations.
@@ -35,8 +48,8 @@ LED Pixel Mapper (LPM) is a comprehensive software solution designed to streamli
 
 ### ⚙️ Project Setup & Hardware Configuration
 
-* **Massive Hardware Library:** Access over 1,000+ pre-built LED tile profiles from major brands, or create and permanently save your own custom tile profiles.
-* **Processor & Extension Integration:** Natively add popular processors including NovaStar COEX 5G/1G (MX6000 Pro, MX40 Pro), NovaStar H-Series chassis, Brompton Tessera, and Megapixel HELIOS.
+* **Massive Hardware Library:** Access 2,700+ pre-built LED tile profiles from major brands, or create and permanently save your own custom tile profiles (Pro).
+* **Processor & Extension Integration:** Natively add popular processors including NovaStar COEX 5G/1G (MX6000 Pro, MX40 Pro) and full modular H-Series chassis (H2–H20, mixed copper/fiber cards), Brompton Tessera, and Megapixel HELIOS. Output cards can be given custom names.
 * **Color Depth Flexibility:** Toggle between standard 8-bit and high-dynamic-range 10-bit color modes. Port capacities adjust automatically based on processor limits.
 * **Global Customization:** Toggle between Light/Dark mode, Metric/Imperial measurement units, and localized power math limits directly from the Global Preferences menu.
 
@@ -58,9 +71,9 @@ LED Pixel Mapper (LPM) is a comprehensive software solution designed to streamli
 
 ### 🛡️ System Redundancy
 
-* **Visual Redundancy Planner:** A dedicated, drag-and-drop interface for building out your show's safety net.
-* **Port-to-Port Backups:** Drag one port onto another to instantly establish a failover line.
+* **Drill-Down Redundancy Planner:** Open a processor into a tree of output cards, CVT boxes, and ports. Drag a whole card or CVT box onto another to back it up in one move, or drag a single port for a one-off failover line.
 * **Processor Mirroring:** Drag an entire secondary processor onto your primary processor to automatically pair all corresponding outputs.
+* **Redundancy in Every Export:** Backup pairings flow straight into the data/power flow maps, technical drawings, and the PDF report's Redundancy Plan tree.
 
 ### 📄 Exports & Documentation
 
