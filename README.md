@@ -6,6 +6,23 @@ LED Pixel Mapper (LPM) is a comprehensive software solution designed to streamli
 
 ---
 
+## 🚀 What's New in v1.7.3 (Colour Depth, Routing Speed & Report Accuracy)
+
+* **12-bit Colour Depth** — Full 12-bit support driven by each manufacturer's published loading charts: NovaStar COEX 1G and MCTRL4K (×48 formula), COEX 5G, Brompton Tessera (with Ultra Low Latency), and Megapixel HELIOS. The EDID exporter follows suit.
+* **Nameable Ports** — Double-click any port chip to name it "Stage L" or "Main". Custom names appear on the canvas, cable labels, and every report, and survive Letters/Numbers preference switches.
+* **Tab to Route** — Press Tab while routing to jump to the next port on the same processor (or next circuit in the same Soca), Shift+Tab to go back. Locked backup ports are skipped.
+* **Ghost Wall Labels** — In Select mode, every wall except the one you're working on shows a name badge on each cluster of its tiles, so scattered pieces are always identifiable.
+* **Duplicate Canvas** — Deep-copy a whole canvas, including every wall, tile, port, circuit and route.
+* **Module Row/Column Labels** — Print each module's grid address (A1, B6…) on pixel maps to direct crew to an exact panel.
+* **Processor IP Addresses** — An optional IP per processor, printed on the PDF and in its own production-CSV column.
+* **Exact Tile Dimensions** — Physical sizes were previously guessed from the pitch number in a tile's name, which broke badly on names whose digits weren't the pitch (NEC LED-F019i exported 10× too large). Exact millimetres were backfilled onto ~1,785 tiles, 1,749 corrected.
+* **Three-Phase Report Fix** — A 3φ distro's total in the PDF was the raw sum of every circuit rather than the per-leg load, overstating it by √3. Reports now match the Circuit panel exactly.
+* **Brompton XD Box Naming Fix** — Expander box names no longer desync after delete and re-add; reports and flow maps now show "Trunk A" instead of "XD 1".
+* **Project Files** — Canvas names and the project file name are now fully separate, and projects save as `.lpmap` (older `.lpmap.json` files still open).
+* **Also fixed** — Circuit colours on canvas match the panel and exports, the per-wall colour picker is reachable and no longer closes mid-drag, export dialog inputs keep focus, backup markers are back on Data Flow maps, and 18 duplicate ROE entries were removed.
+
+---
+
 ## 🚀 What's New in v1.7.1 (Bug Fixes & Refinements)
 
 * **Mac Export Reliability** — Data and Power Flow map exports now always render in software, fixing blank/empty output that some Apple Silicon Macs produced in Dark and Light styles.
