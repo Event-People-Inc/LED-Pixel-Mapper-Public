@@ -335,7 +335,7 @@
   <p class="section-label" style="text-align:center;">Documentation</p>
   <h1 style="font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 12px;">Comprehensive Technical Reference Manual</h1>
   <p style="max-width: 560px; margin: 0 auto; font-size: 16px; color: var(--text-secondary);">
-    Version 1.7.3 — Step-by-step instructions for setup, data routing, power distribution, redundancy, and exports.
+    Version 1.8.0 — Step-by-step instructions for setup, data routing, power distribution, redundancy, and exports.
   </p>
 </div>
 
@@ -354,6 +354,7 @@
           <li><a href="#canvas-resolution">1.3 Canvas Resolution</a></li>
           <li><a href="#hardware-library">1.4 Hardware Library</a></li>
           <li><a href="#preferences">1.5 Global Preferences</a></li>
+          <li><a href="#safety">1.6 Undo, Confirmations &amp; Icons</a></li>
         </ul>
       </li>
       <li>
@@ -364,6 +365,7 @@
           <li><a href="#execute-route">2.3 Executing the Route</a></li>
           <li><a href="#view-options">2.4 View Options &amp; Port Info</a></li>
           <li><a href="#auto-router">2.5 Auto Router</a></li>
+          <li><a href="#replace-processor">2.6 Replacing a Processor</a></li>
         </ul>
       </li>
       <li>
@@ -382,6 +384,8 @@
           <li><a href="#redundancy-tree">4.1 The Drill-Down Tree</a></li>
           <li><a href="#drag-pair">4.2 Drag-Pair at Any Level</a></li>
           <li><a href="#processor-redundancy">4.3 Processor Mirroring</a></li>
+          <li><a href="#brompton-wizard">4.4 Brompton Redundancy Wizard</a></li>
+          <li><a href="#redundancy-plan">4.5 The Redundancy Plan List</a></li>
         </ul>
       </li>
       <li>
@@ -392,6 +396,9 @@
           <li><a href="#qc-tools">5.3 Quality Control Tools</a></li>
           <li><a href="#customization">5.4 Customization</a></li>
           <li><a href="#site-tools">5.5 EDID &amp; Tearing Test</a></li>
+          <li><a href="#pixel-map-editor">5.6 Pixel Map Editor</a></li>
+          <li><a href="#resolume">5.7 Resolume Export</a></li>
+          <li><a href="#export-settings">5.8 Export Settings</a></li>
         </ul>
       </li>
       <li>
@@ -451,6 +458,15 @@
           <span class="badge-pro">Pro</span>
         </li>
       </ul>
+      <p>
+        Bit depth and frame rate are what every port budget is calculated from, so changing either one
+        resizes every port in the project at once. If a change would push ports you have already routed
+        past their new limit, a dialog <strong>names each one before anything is applied</strong> —
+        processor, port, how far over it would be, and how many tiles would have to come off — with a
+        Cancel. A change that costs you nothing is applied straight away with no interruption. The check
+        uses the same rule the routing block enforces, so it cannot tell you one thing and then have
+        routing do another.
+      </p>
       <div class="callout note">
         <span class="callout-icon">ℹ️</span>
         <div class="callout-body">
@@ -485,28 +501,56 @@
         </div>
       </div>
       <p>
+        Canvas tabs <strong>hold their position</strong> in the bar. Switching canvases moves the
+        highlight, not the tabs — the one you are working on does not jump to the front — so the bar
+        stays as you arranged it and you can find a canvas by where you last saw it. Drag a tab to
+        reorder them, and that order is saved with the project and used by every export. The
+        <kbd>+</kbd> that adds a canvas sits at the end of the row, after the last tab; the wall tab bar
+        works the same way.
+      </p>
+      <p>
+        Every wall carries its <strong>own colour</strong>. Click the colour dot on a wall tab to set it,
+        or set it from the export dialog — either way the wall tabs, the Select-mode canvas and every
+        export follow the same value, so they can never disagree. It is saved with the project, it is
+        undoable, and a wall you have not set keeps the palette colour for its position.
+      </p>
+      <p>
         While in <strong>Select</strong> mode, every wall other than the one you are working on displays a
         small name badge over each cluster of its tiles. When a wall's pieces are scattered across the
         canvas — a header, two side towers, and a floor strip, say — this makes it immediately clear which
         piece belongs to which wall. The active wall stays unmarked so it remains clean to work on, and the
-        badges hold a constant on-screen size at any zoom level.
+        badges hold a constant on-screen size at any zoom level. They can be switched off from the
+        canvas toolbar beside the snap controls, and that choice persists across sessions. The badges
+        now show in <strong>all three modes</strong> — Select, Routing and Circuiting — rather than
+        Select alone.
       </p>
 
       <h3 id="hardware-library">1.4 Hardware Library Configuration</h3>
       <p>Before routing data, you must populate your project with the appropriate physical hardware:</p>
       <ul>
         <li>
-          <strong>Adding LED Tiles:</strong> Under <em>Tile Profiles</em>, select <kbd>From Library</kbd> to
-          browse 2,700+ natively supported manufacturer profiles — each row shows pixel count, physical
-          panel size in mm, and wattage. If utilizing proprietary or unlisted hardware, select
-          <kbd>Add Custom</kbd> to manually enter the tile's nomenclature, pixel width, pixel height,
-          physical size, and maximum power draw.
+          <strong>Adding LED Tiles:</strong> Under <em>Tile Profiles</em>, click <kbd>Library</kbd> to open
+          the 2,700-panel catalogue in its own window. Brands run down the left with a count each, one
+          search box matches brand, model and resolution together, and every panel is a card showing what
+          actually separates one from another — pitch, pixel count, real size in millimetres, power draw.
+          Each card draws the panel's <strong>own proportions to scale against the others on screen</strong>,
+          so a 500 × 1000 reads as twice the height of a 500 × 500 without you comparing numbers. For
+          proprietary or unlisted hardware, <kbd>Add Custom</kbd> still takes the name, pixel width and
+          height, physical size, and maximum power draw by hand.
         </li>
         <li>
-          <strong>Adding Processors:</strong> Scroll to the <em>Processors</em> section and click
-          <kbd>Add Processor</kbd>. Select your desired sending controller — NovaStar COEX (MX20/MX30/MX40
-          Pro/MX2000 Pro/MX6000 Pro, 1G and 5G), the fully modular NovaStar H Series (H2 through H20), Brompton
-          Tessera, or Megapixel HELIOS — to add it to the project environment.
+          <strong>Adding Processors:</strong> <kbd>Add</kbd> on the <em>Processors</em> header opens a
+          picker window. Search matches <strong>model, range or port count</strong> — "MX40", "tessera"
+          and "20 ports" all find hardware — ranges run down the side with counts, and
+          <strong>every model is shown with a drawing of its real front panel</strong>, so you can pick
+          out the box you have in the rack instead of working from model numbers. All 45 models are
+          drawn: the NovaStar MCTRL / MSD / NovaPro, VX and VX Pro ranges, the COEX MX controllers, the
+          H Series, Brompton Tessera, and Megapixel HELIOS. Your saved <em>My Processors</em> get their
+          own section, and building one by hand is one click.
+          <br><br>
+          The window picks a <strong>model</strong> only. Naming, expander boxes and H-Series output
+          cards stay on the form behind it, because those configure one particular processor rather than
+          browse for one.
         </li>
         <li>
           <strong>Modular Processor Trees:</strong> H Series and COEX processors build a
@@ -515,6 +559,15 @@
           card drives. Double-click any card's name in the routing panel to give it a custom label — e.g.
           "Front Truss FOH" — which then appears everywhere that card is referenced, including the
           Redundancy Planner and the PDF report.
+        </li>
+        <li>
+          <strong>Removing a panel profile:</strong> the bin beside a tile profile deletes that panel
+          <em>and every tile on the canvas built from it</em>. A tile has no size, pitch or power of its
+          own — all of that lives on the panel — so it cannot outlive the panel it is drawn from. You are
+          told how many tiles will go before anything happens, those tiles are unrouted from their ports
+          and circuits on the way out, and the whole thing is a single <kbd>Ctrl</kbd>+<kbd>Z</kbd>. To
+          change a wall from one panel to another <em>without</em> losing the layout, use
+          <strong>Replace Panel</strong> from the profile's right-click menu instead.
         </li>
         <li>
           <strong>Saving Custom Hardware</strong> <span class="badge-pro">Pro</span>
@@ -554,10 +607,64 @@
           reflects your setting.
         </li>
         <li><strong>Measurement Units:</strong> Metric (mm/cm/m) or Imperial (ft/in), used by the Technical Drawing export and physical wall size labels.</li>
+        <li>
+          <strong>Advanced Port Capacity Overrides:</strong> two opt-in toggles for when the published
+          figures are more conservative than your rig actually needs.
+          <strong>Allow full network port capacity</strong> lets a 1G port fill to the physical
+          Cat5/gigabit ceiling of <strong>655,360 px</strong> instead of stopping at the sender's
+          published number — 8-bit only, because at 10- and 12-bit a pixel costs more bits on the wire.
+          <strong>Frame rate affects NovaStar legacy port capacity</strong> makes MCTRL / MSD / NovaPro /
+          VX senders scale with frame rate — roughly double at 30 Hz, about 1.2× at 50 Hz — rather than
+          applying one figure at every rate. Both are off by default and neither can ever
+          <em>reduce</em> a port's capacity.
+        </li>
       </ul>
+      <div class="callout warn">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-body">
+          <strong>What the overrides trade away</strong>
+          The published per-port figures carry the manufacturer's own headroom. Turning an override on
+          spends that headroom, and each toggle says on screen what you are giving up. Leave them off
+          unless you have a specific reason and the rig to back it up — the defaults are what the
+          manufacturer will support.
+        </div>
+      </div>
       <p>
         The left and right side panels can also be resized by dragging their divider, and collapse
         automatically to give the canvas more room while routing data or power.
+      </p>
+
+      <h3 id="safety">1.6 Undo, Confirmations &amp; Icons</h3>
+      <p>
+        <kbd>Ctrl</kbd>+<kbd>Z</kbd> reaches everything in the project — layout, routing, circuits,
+        redundancy, names and colours. Actions that touch several things at once are a
+        <strong>single</strong> undo rather than one per change: finishing the Brompton wizard, swapping
+        a processor, deleting a panel and its tiles, or renaming a Soca and its six circuits each
+        reverse in one keystroke.
+      </p>
+      <p>
+        <strong>Deleting anything asks first.</strong> Walls, canvases, circuits, Socas, circuit groups,
+        data ports, processors, panel profiles, and saved My Tiles / My Processors each put up a single
+        question naming what you clicked. Where the consequence goes beyond the thing itself, the
+        question says so — a Soca names how many circuits go with it, a panel profile names how many
+        tiles on the canvas go with it, and a circuit group tells you its contents move up a level
+        rather than being deleted. Cancel takes the focus, so <kbd>Enter</kbd> and <kbd>Esc</kbd> both
+        back out safely.
+      </p>
+      <div class="callout warn">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-body">
+          <strong>Two things undo cannot reach</strong>
+          <strong>My Tiles</strong> and <strong>My Processors</strong> are your personal library, stored
+          with your preferences rather than in the project, so <kbd>Ctrl</kbd>+<kbd>Z</kbd> does not
+          reach them. Their confirmations say plainly that the deletion cannot be undone.
+        </div>
+      </div>
+      <p>
+        Icons mean one thing each throughout the app: an <strong>✕ closes, dismisses, clears or
+        unassigns</strong>, and a <strong>bin deletes</strong>. Removing a tile from a circuit or a port
+        keeps its ✕, because that unassigns the tile rather than destroying it. Previously both jobs
+        used an ✕ and the two sat side by side on the same rows.
       </p>
     </section>
 
@@ -603,6 +710,35 @@
         set, the address prints beneath the processor name in the PDF's Processor Requirements table and
         occupies its own column in the production CSV — so the network configuration travels with the
         paperwork instead of living in a separate note.
+      </p>
+
+      <h4 style="margin-top:20px;">Whole-device capacity on COEX controllers</h4>
+      <p>
+        A controller is rated for <strong>less than its ports add up to</strong>. An MX40 Pro's twenty
+        ports total 13.2M pixels — 26.4M with four CVT boxes — but the device itself stops at
+        <strong>9.00M at 60 Hz</strong>. The published per-device figure is enforced for every COEX
+        model, by frame rate, bit depth and receiving-card class. Routing <strong>blocks at the device
+        limit</strong> naming the controller and its rating, and the processor header carries a
+        device-total bar that runs amber then red. A device can go over its rating while every single
+        port on it is individually legal, which is exactly the case this catches.
+      </p>
+      <p>
+        Where the manufacturer's tables are ambiguous the rating <strong>under-claims</strong> rather
+        than guesses upward: an unlisted frame rate rounds up to the next published one, an unsupported
+        combination falls back to the lowest figure that device publishes, and mixed receiving cards are
+        rated by the lower class. A model with no published rating is left alone.
+      </p>
+
+      <h4 style="margin-top:20px;">Free Topology (NovaStar VX Pro)</h4>
+      <p>
+        A per-processor toggle on the VX400 Pro, VX1000 Pro and VX2000 Pro. <strong>Off</strong> (the
+        default) a port's load is the <em>circumscribed rectangle</em> around its cabinets, so blank grid
+        positions inside an irregular route still count against it — this is the NovaLCT model.
+        <strong>On</strong>, loading is calculated from the <em>actual physical cabinets</em>, so
+        creative walls, staggered layouts and non-rectangular routes stop spending capacity on empty
+        space. The port bar, the routing limit and the reports all follow whichever model you pick, so
+        they cannot disagree with one another. Classic VX / MCTRL / MSD / NovaPro senders keep the fixed
+        NovaLCT behaviour.
       </p>
 
       <h3 id="execute-route">2.3 Executing the Route</h3>
@@ -668,6 +804,31 @@
         its pixel capacity. Running the same preset on the next port continues the cable chain cleanly where
         the last one left off.
       </p>
+
+      <h3 id="replace-processor">2.6 Replacing a Processor</h3>
+      <p>
+        When the rig changes — the MX40 you planned for becomes a VX1000, or a Tessera SX40 arrives
+        instead of an S8 — right-click the processor and choose <kbd>Replace Processor</kbd> to swap the
+        model while <strong>keeping your routing</strong>. It opens its own dialog rather than
+        re-purposing the Add Processor form, so it is always clear you are replacing rather than adding.
+      </p>
+      <p>
+        Ports map one-for-one and carry their tiles and wall assignment across. A bigger model leaves
+        the extra ports empty; a smaller one releases the surplus ports' tiles so you can reroute them.
+        Modular targets — H Series cards, COEX CVT boxes — are configured right there in the dialog.
+        Port names you typed by hand survive the swap; auto-generated ones follow the new model's
+        convention.
+      </p>
+      <div class="callout tip">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body">
+          <strong>The cost is shown before you commit</strong>
+          The dialog previews exactly what the swap will do — how many ports carry over, how many tiles
+          would be released, and any port that would end up over capacity — with <kbd>Cancel</kbd>
+          always available and a separate <kbd>Replace anyway</kbd> button for the case where tiles
+          would be lost. One <kbd>Ctrl</kbd>+<kbd>Z</kbd> reverses the entire swap.
+        </div>
+      </div>
     </section>
 
 
@@ -694,6 +855,13 @@
           <strong>Soca Splays:</strong> Select the <kbd>Soca</kbd> button to introduce a standardized
           6-circuit breakout bundle. Entire Soca bundles can be globally assigned to a specific wall to
           prevent cross-contamination of power documentation.
+          <br><br>
+          A Soca's six circuits are created named after it — <kbd>Soca A - 1</kbd> through
+          <kbd>Soca A - 6</kbd> — and <strong>renaming the Soca renames them with it</strong>: call it
+          "Stage Left" and they become <kbd>Stage Left - 1</kbd> … <kbd>Stage Left - 6</kbd>, each number
+          staying on the same circuit. A circuit you renamed yourself is <strong>never
+          clobbered</strong> — only names still in the auto-generated form follow along, so "House left
+          truss" stays what you called it. One <kbd>Ctrl</kbd>+<kbd>Z</kbd> covers the lot.
         </li>
       </ul>
 
@@ -861,6 +1029,83 @@
         — flows straight into the data and power flow map exports, technical drawings, and the PDF report's
         Redundancy Plan page, which draws the same card/CVT-box tree as the planner itself.
       </p>
+      <p>
+        The CSV and the PDF carry <strong>every kind of redundancy by name</strong>, not just
+        controller-level 1:1 and N+1 pairs, and both state <strong>how each one is cabled</strong> —
+        including that a mirrored trunk repeats the primary's chain in <strong>reverse</strong>. That is
+        something a bare port list cannot convey, and getting it wrong on site means no backup at all.
+      </p>
+
+      <h3 id="brompton-wizard">4.4 Brompton Redundancy Wizard</h3>
+      <p>
+        A guided way to build a Tessera rig's redundancy, from a button at the <strong>top of the
+        Redundancy window</strong>, above the controller grid. The drag-and-drop planner below it remains
+        the manual alternative — the wizard is for getting a standard topology right quickly, not a
+        replacement for hand-pairing.
+      </p>
+      <p>Three steps: pick the method, pick the hardware, review what will be written.</p>
+      <ul>
+        <li>
+          <strong>Closed Loop</strong> — the wall's chain is cabled back on itself, so a break anywhere
+          along it still leaves every panel fed from one end or the other.
+        </li>
+        <li>
+          <strong>Processor Redundancy</strong> — a second controller stands by for the first, taking
+          over wholesale if it fails.
+        </li>
+        <li>
+          <strong>Mirrored Reverse</strong> — a second SX40 on the same XD boxes with the wall routed
+          backwards.
+        </li>
+      </ul>
+      <p>
+        Candidate loops are offered by <strong>each model's own rule</strong>, so most impossible
+        configurations never appear on the menu at all: an SX40 offers "Trunk A loops back to Trunk B",
+        an S8 offers its four port pairs. A validator catches the rest — trunk A paired with D, an S8
+        asked to do processor redundancy, a mirrored primary with nothing routed to it.
+        <strong>Errors block Finish; warnings do not</strong>, and every issue prints its fix underneath
+        rather than just refusing.
+      </p>
+      <div class="callout warn">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-body">
+          <strong>Mirrored Reverse is a field technique, not a Brompton topology</strong>
+          It is labelled as such in the wizard. It is not documented by Brompton — it is what crews do
+          in practice, and it works, but you should know which of the three you are signing off on.
+        </div>
+      </div>
+      <p>
+        Finishing commits the groups, the port pairings and the processor roles as
+        <strong>one undo</strong>. A port that becomes a backup has its tiles cleared, because it mirrors
+        its primary rather than carrying its own load.
+      </p>
+
+      <h3 id="redundancy-plan">4.5 The Redundancy Plan List</h3>
+      <p>
+        <strong>Redundancy plan</strong> in the Redundancy window lists <strong>every group whatever its
+        type</strong> — controller pairs, cable loops, mirrored trunks — each with its own delete button,
+        plus <strong>Clear all redundancy</strong> to wipe the project's redundancy in one step.
+        Previously only controller pairs were listed, so a closed loop or a mirrored trunk existed
+        nowhere in the interface and could only be found by exporting the PDF.
+      </p>
+      <div class="callout note">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-body">
+          <strong>No edit reaches beyond its own hardware</strong>
+          The wizard's Finish supersedes the redundancy on <em>the processors in its plan</em> and leaves
+          every other processor untouched — redoing your SX40s does not disturb an S8, an S4 or an M2.
+          Pairing two processors clears only those two. Before committing, the wizard <strong>names the
+          groups it would remove and the processors affected, and will not proceed until you
+          agree</strong>; changing the selection withdraws that agreement.
+        </div>
+      </div>
+      <p>
+        <strong>Clearing really clears.</strong> The per-card, per-box and per-processor "Clear all"
+        buttons used to drop the port pairings but leave the group behind still listing them — so the
+        badges disappeared from the screen while the exported report went on describing redundancy that
+        was no longer there. They now prune the group too, and drop it entirely once nothing is left in
+        it. Every one of these is a single undo and marks the project unsaved.
+      </p>
     </section>
 
 
@@ -901,6 +1146,13 @@
           stepped, L-shaped, and irregular builds are dimensioned the way they are actually constructed.
           Measurements follow the Metric or Imperial setting in Preferences and are derived from each
           tile's real manufacturer dimensions.
+          <br><br>
+          On a <strong>canvas drawing</strong>, every wall is measured with <strong>its own panel
+          pitch</strong>. A canvas that mixes LED products — a 2.6 mm header over a 3.9 mm side wall —
+          is drawn with each cluster at its true physical size and in its true position relative to the
+          others. Each wall is dimensioned once, overall width × height, rather than edge by edge:
+          <kbd>~</kbd> before a figure means the wall is an exact rectangle at that size, and
+          <kbd>≤</kbd> means it is irregular and the figure is its overall extent.
         </li>
       </ul>
 
@@ -923,6 +1175,15 @@
           across Pixel Map, Canvas, and Data/Power Flow exports.
         </li>
       </ul>
+      <p>
+        In the PDF report, every wall page lays its three maps out the same way: the info row on top,
+        then <strong>Pixel Map, Data Flow and Power Flow stacked full width</strong>. Previously only
+        walls wider than 2:1 stacked, and portrait or square walls put the three maps side by side in a
+        narrow column — about <strong>42 mm</strong> each on an A4 landscape sheet. Stacked, a map gets
+        the full <strong>273 mm</strong> of width, or most of a page's height when the wall is tall:
+        more than twice as wide for a 9:16 wall. Tall walls use more pages as a result, which is the
+        intended trade.
+      </p>
       <p>
         Every export runs on a background worker so the interface never freezes, with a live progress
         overlay showing the current step, a done/total count, and an estimated time remaining. Each export
@@ -953,6 +1214,15 @@
         voltages, and a twofer badge where the circuit splits.
       </p>
       <p>
+        Both documents say <strong>how many of each model</strong> the job needs, not just a grand total.
+        The PDF's Processor Requirements page opens with an <strong>Equipment Required</strong> table —
+        model, quantity, total ports, grand total on the last row — and the summary page's Processors
+        card lists the models under the count. They are counted by <strong>model</strong>, so renaming
+        two MX40 Pros "Upstage" and "Downstage" still reads as 2 × MX40 Pro rather than as two
+        different types. <strong>Extension boxes</strong> (Tessera XD, CVT Box) are tallied separately,
+        since they are ordered apart from the controllers that drive them.
+      </p>
+      <p>
         A <strong>Drawn by</strong> option in the export settings adds a checkbox and name field; when
         enabled, "Drawn by: &lt;name&gt;" prints in the footer of every page of the report. The name is
         remembered between exports and across sessions, so it only needs entering once.
@@ -969,7 +1239,10 @@
       <p>
         Within the export menu, users may upload a corporate logo. This asset will be automatically
         appended to all exported pixel maps, technical flow diagrams, and PDF reports for professional
-        branding.
+        branding. The same logo can be uploaded from inside the <a href="#pixel-map-editor">Pixel Map
+        Editor</a> — there is only ever one shared logo, so setting it in either place sets it in both.
+        The editor is also where you control <em>where</em> it sits on a pixel map and how big it is,
+        or switch it off for a particular design.
       </p>
 
       <h3 id="site-tools">5.5 EDID &amp; Tearing Test <span class="badge-pro">Pro</span></h3>
@@ -985,8 +1258,147 @@
           map with two sweeping sync lines. Play it on-site through a media server — if processors fall out
           of frame sync, the moving line visibly tears at the seam between them, pinpointing the problem
           before doors.
+          <br><br>
+          A full <strong>Animation</strong> panel controls what sweeps: <strong>Effect</strong> (None,
+          Scan Line, Sonar Line with a long fading tail, Screen Lines as marching bars, Center Pulse, or
+          Ripple Waves as expanding rings at a constant stroke width), <strong>Direction</strong>
+          (horizontal, vertical or both), plus <strong>Colour</strong>, <strong>Opacity</strong>,
+          <strong>Speed</strong>, <strong>Line Size</strong>, <strong>Trail Length</strong> and
+          <strong>Loops</strong>. Settings persist across sessions.
         </li>
       </ul>
+      <div class="callout tip">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body">
+          <strong>The loop is seamless</strong>
+          One cycle is a whole number of frames, both sweeps share a wrap distance, and the encoder is
+          given an exact frame count rather than a duration that rounds at 23.98 / 29.97 / 59.94. Set
+          the loop count and the file repeats with no visible seam — it can run on a media server all
+          day without anyone noticing the join.
+        </div>
+      </div>
+
+      <h3 id="pixel-map-editor">5.6 Pixel Map Editor <span class="badge-pro">Pro</span></h3>
+      <p>
+        Design how your pixel maps <em>look</em>, save it, and reuse it across projects. Open it from
+        the <strong>header of the export window</strong>, beside the project name, or from the Pixel Map
+        options. Live preview renders through the same engine as the export, so what you see is what
+        the file will contain.
+      </p>
+      <ul>
+        <li>
+          <strong>Colour:</strong> <kbd>Dual</kbd> or <kbd>Triple</kbd> mode, hue rotation with a colour
+          bar showing what you are sliding toward, and a per-wall gradient with orientation, side, amount
+          and feather. Dual mode shows two swatches; the third colour is still stored, so switching back
+          to Triple loses nothing.
+        </li>
+        <li>
+          <strong>Images:</strong> two uploaded images can replace the two checkerboard colours outright.
+        </li>
+        <li><strong>Pattern:</strong> dial-able mosaic and X marks.</li>
+        <li>
+          <strong>Centre badge:</strong> movable, scalable and rotatable — or removed entirely with the
+          checkbox at the top of the section.
+        </li>
+        <li>
+          <strong>Module labels:</strong> restyled A1/B6 grid addresses, also removable with a checkbox.
+        </li>
+        <li>
+          <strong>Logo:</strong> placed anywhere at any size rather than pinned to a corner, uploaded
+          from inside the editor, and switched off with a checkbox. It is the same single shared logo
+          the export dialog uses — set it in either place and both see it.
+        </li>
+      </ul>
+      <p>
+        Each section has a <kbd>Default</kbd> button that resets just that section,
+        <kbd>Ctrl</kbd>+<kbd>Z</kbd> works inside the editor, and saved designs are renamed by
+        double-clicking them. Designs sit alongside four built-in presets and are assigned
+        <strong>per wall</strong> from a live-thumbnail picker in the export options, applying to both
+        the Pixel Map and Canvas exports.
+      </p>
+      <div class="callout note">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-body">
+          <strong>A design controls how a map looks, not what it contains</strong>
+          What goes <em>on</em> the map — module labels, wall badges, annotations — stays with the
+          export checkboxes. A label is drawn only when the export asks for it <em>and</em> the design
+          has not switched it off, so the two never fight. The design picker only appears on exports
+          that actually draw a pixel map.
+        </div>
+      </div>
+
+      <h3 id="resolume">5.7 Resolume Export <span class="badge-pro">Pro</span></h3>
+      <p>
+        Builds a Resolume <strong>Advanced Output</strong> preset from the project, so the map you have
+        already planned becomes the screen setup instead of being rebuilt slice by slice in Arena.
+        <strong>Each canvas becomes a screen</strong> at its own resolution and <strong>each wall becomes
+        a slice</strong>, named after the wall and placed exactly where it sits on the canvas.
+      </p>
+      <p>
+        Non-rectangular walls keep their shape. An L, T or cross exports as a native
+        <strong>Polygon</strong> with its true traced outline — the same tracer the technical drawings
+        use — a wall of <strong>detached blocks</strong> becomes one slice per block so the gap is never
+        mapped as wall, and an enclosed <strong>hole</strong> is reported rather than silently dropped.
+      </p>
+      <p>
+        Resolume holds one composition per preset while every LPM canvas starts at its own 0,0, so
+        canvases are <strong>tiled side by side across the composition</strong> — each screen samples its
+        own region instead of all of them stacking in the top-left corner.
+      </p>
+      <ul>
+        <li><strong>Save preset as…</strong> writes the file anywhere you like.</li>
+        <li>
+          <strong>Install to Resolume</strong> writes it straight into Resolume's Advanced Output presets
+          folder, found automatically — OneDrive-redirected Documents included — with a
+          <kbd>Choose folder…</kbd> fallback if your install is somewhere unusual.
+        </li>
+      </ul>
+      <div class="callout note">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-body">
+          <strong>Screens arrive as virtual outputs</strong>
+          Assign the real display inside Resolume. Your live configuration is never touched, a replaced
+          preset is backed up with a timestamp first, and every write is atomic — an interrupted save
+          cannot leave you with half a preset.
+        </div>
+      </div>
+
+      <h3 id="export-settings">5.8 Export Settings</h3>
+      <p>
+        <strong>File ▸ Export Settings…</strong> lets you choose exactly what an exported file contains,
+        rather than sending the whole project every time. It saves as a normal <kbd>.lpmap</kbd>.
+      </p>
+      <ul>
+        <li>
+          <strong>Project parts</strong> each get a checkbox: walls, tile profiles, annotations,
+          processors, routing, circuits, circuit assignments, redundancy.
+          <strong>Processors and routing are separate</strong>, so you can send someone the hardware
+          without the patch — the devices and ports arrive with nothing assigned. Circuits and circuit
+          assignments split the same way.
+        </li>
+        <li>
+          <strong>Canvases</strong> are a checkbox each, by name, rather than "this one or all of them".
+        </li>
+        <li>
+          <strong>Library items</strong> that never normally travel with a project can be included: My
+          Tiles, My Processors, pixel map designs with their images, your branding logo, and preferences.
+        </li>
+      </ul>
+      <p>
+        Dependencies are <strong>enforced and locked</strong>, so an export can never be
+        self-inconsistent: routing pulls in both the processors <em>and</em> the walls, circuit
+        assignments pull in the circuits <em>and</em> the walls, and redundancy needs only the
+        processors. Presets cover the common cases — Everything, Share with a colleague, Layout only,
+        Template — and never touch your canvas selection.
+      </p>
+      <div class="callout tip">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body">
+          <strong>Opening a file that carries library items</strong>
+          You are asked first, and only what you do not already have is added. Someone else's saved
+          tiles can never quietly overwrite yours.
+        </div>
+      </div>
 
     </section>
 

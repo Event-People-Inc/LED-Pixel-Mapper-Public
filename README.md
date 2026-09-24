@@ -6,6 +6,35 @@ LED Pixel Mapper (LPM) is a comprehensive software solution designed to streamli
 
 ---
 
+## 🚀 What's New in v1.8.0 (Pixel Map Editor, Resolume, Redundancy Wizard)
+
+* **Pixel Map Editor** `Pro` — Design how your pixel maps look and reuse it across projects: parametric Dual/Triple colour with hue rotation and per-wall gradients, two uploaded images in place of the checkerboard, dial-able mosaic and X marks, a movable centre badge, restyled module labels, and a logo placed anywhere at any size. The centre badge, module labels and logo can each be switched off outright. Designs are assigned per wall from a live-thumbnail picker.
+* **Resolume Export** `Pro` — Build a Resolume **Advanced Output** preset from your project. Each canvas becomes a screen, each wall a slice, placed exactly where it sits. L-shaped and irregular walls export as true Polygons; detached blocks become one slice each so a gap is never mapped as wall. Save it anywhere or install it straight into Resolume's presets folder. Verified against real Arena 7.28.0 presets.
+* **Brompton Redundancy Wizard** — Build a Tessera rig's redundancy in three guided steps: Closed Loop, Processor Redundancy or Mirrored Reverse. Candidate loops come from each model's own rule, so impossible configurations never appear; a validator catches the rest and prints the fix. Every edit is **scoped to the hardware it touches** — redoing your SX40s no longer disturbs an S8 or an M2 — and the wizard names what it will remove before it does anything.
+* **The Redundancy Plan List** — Every group, whatever its type, is now listed with a delete button, plus **Clear all redundancy**. Cable loops and mirrored trunks previously existed nowhere in the interface. The per-card "Clear all" buttons now really clear: they used to drop the pairings but leave the group behind, so the report kept describing redundancy that was gone.
+* **Hardware Pickers** — **Library** and **Add Processor** now open proper windows. Panels are cards showing pitch, pixel count, real millimetres and power, each drawn to its own proportions. Processors are shown with **drawings of their real front panels** — all 45 models — and search matches model, range or port count ("20 ports").
+* **Export Settings** — **File ▸ Export Settings…** picks exactly what a file contains: walls, profiles, annotations, processors, routing, circuits, assignments, redundancy, each canvas by name, plus your library items. Processors and routing are separate, so you can send the hardware without the patch. Dependencies are enforced so an export can never be self-inconsistent.
+* **Replace Processor** — Right-click a processor and swap the model while keeping your routing, in its own dialog, with the cost shown before you commit — ports carried, tiles released, any port left over capacity.
+* **Whole-Device COEX Capacity** — A controller is rated for **less than its ports add up to**: an MX40 Pro's ports total 13.2M pixels but the device stops at 9.00M at 60 Hz. Now enforced per model, by frame rate, bit depth and card class, with a device-total bar on the processor header.
+* **Capacity Change Warning** — Changing bit depth or frame rate resizes every port. If that would push routed ports over, a dialog names each one — processor, port, how far over, how many tiles would come off — before anything is applied.
+* **Tearing Test Animation** `Pro` — Six effects (Scan Line, Sonar Line, Screen Lines, Center Pulse, Ripple Waves), with direction, colour, opacity, speed, line size, trail length and loop count. Loops are frame-exact, so the file repeats with no visible seam all day.
+* **Full-Size Wall Maps in the PDF** — Every wall page stacks its three maps full width. Portrait and square walls used to get about 42 mm each; they now get the full 273 mm.
+* **Accurate Mixed-Product Canvas Drawings** — A canvas mixing LED products (a 2.6 mm header over a 3.9 mm side wall) now measures every wall with **its own pitch**, so clusters sit at true size in true relative position. Each wall is dimensioned once, W × H, instead of edge by edge.
+* **Soca Renames Cascade** — Renaming a Soca renames its six circuits with it, each number staying on the same circuit. A circuit you named yourself is never clobbered.
+* **Delete Confirmations Everywhere** — Walls, canvases, circuits, Socas, circuit groups, ports, processors, panel profiles and saved library items all ask first. A Soca names how many circuits go with it; a panel profile names how many tiles. **✕ now means close, a bin means delete**, consistently.
+* **Processor Counts by Type** — The PDF and CSV report how many of each model the job needs, counted by model, with extension boxes tallied separately.
+* **Also fixed** — Deleting a panel profile left its tiles stranded on the canvas, visible but unselectable; they now go with it and old saves heal themselves on open. Renaming a port, circuit, group or Soca now marks the project unsaved. Canvas tabs hold their position instead of jumping to the front, and the wall bar's **+** sits beside the last tab.
+
+---
+
+## 🚀 What's New in v1.7.4 (Field Report Fixes)
+
+* **Free Topology (NovaStar VX Pro)** — A per-processor toggle on VX400/VX1000/VX2000 Pro. Off, a port's load is the circumscribed rectangle around its cabinets (the NovaLCT model); on, it is the actual physical cabinets, so creative and staggered walls stop wasting capacity on empty space.
+* **Advanced Port Capacity Overrides** — Two opt-in toggles for when the published figures are more conservative than your rig needs: full 655,360 px network capacity on 1G ports (8-bit only), and frame-rate scaling for legacy NovaStar senders. Both off by default; neither can ever reduce a port's capacity.
+* **Wall Name Badge Toggle** — The ghost wall-name badges can be switched off from the canvas toolbar, and the setting persists. They now show in all three modes rather than Select only.
+
+---
+
 ## 🚀 What's New in v1.7.3 (Colour Depth, Routing Speed & Report Accuracy)
 
 * **12-bit Colour Depth** — Full 12-bit support driven by each manufacturer's published loading charts: NovaStar COEX 1G and MCTRL4K (×48 formula), COEX 5G, Brompton Tessera (with Ultra Low Latency), and Megapixel HELIOS. The EDID exporter follows suit.
