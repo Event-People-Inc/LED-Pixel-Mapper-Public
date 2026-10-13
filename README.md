@@ -6,6 +6,25 @@ LED Pixel Mapper (LPM) is a comprehensive software solution designed to streamli
 
 ---
 
+## 🚀 What's New in v1.8.1 (Organisation, Accuracy & Speed)
+
+* **Processor Groups** — Organise a big rig into folders in the Routing panel, the same way circuits already work and with the same 📁＋ button. Drag processors in, nest groups, collapse them. Deleting a group keeps its processors. The organisation reaches the paperwork: the PDF's Processor Requirements table splits into a section per group, the production CSV gains a **Group** column, and the data flow map legend names each port's group.
+* **Move Several Walls at Once** — **Ctrl+click** wall tabs to gather walls and move them as one unit, by arrow keys, an exact **Move by Δx/Δy** offset, absolute X/Y, or by dragging. Splitting a wall into pieces for the pixel map used to mean nudging each piece on its own.
+* **Move Circuit Tiles** — Right-click a circuit to move its whole chain onto another, the power-side twin of Move Port Tiles. The twofer structure comes across intact and the source circuit is emptied rather than deleted.
+* **NovaStar CX40 Pro** — The 4K COEX controller: 6 × 5GBASE-T plus a 40G optical port, with its published per-port figures and its **9 million pixel** whole-device limit enforced — which matters, since its six ports total 17.7M between them. 5G processors now carry a **5G** badge, since their ports take 5G receiver cards only.
+* **Tab Through a Twofer** — While wiring a twofer, Tab closes Branch A and starts Branch B; Tab again closes the twofer. The branch list in the circuit editor is now collapsible and starts collapsed, with the tile count and number range on each header.
+* **Clearer Flow Maps** — Chain-start markers (**A1**, **Soca A - 1**) are always drawn, even with per-tile labels off — they are landmarks, not annotations. Chain-index badges pick readable ink, so a pale wall or yellow circuit no longer hides the number. Arrowheads are about a third larger on the Dark and Light styles.
+* **Tidier Menus** — The port and circuit "move all tiles to" menus are grouped by processor / Soca, collapsed by default, and scroll — instead of listing every port on every device in one flat run that ran off the screen.
+
+### Fixes
+
+* **XD box and card capacity was wrong** — Those headers worked out their budget without knowing which processor they belonged to, so they used a generic halving that ignored the manufacturer's table and frame rate entirely. A 10-bit Tessera trunk at 60Hz read 2,625K instead of 4,200K. The ports inside were always right; only the header disagreed. Exports were never affected.
+* **Arrow keys moved tiles twice, and R rotated 180°** — Two keyboard handlers were both acting on the same keys. Shift+arrow jumped the step plus the snap grid.
+* **Multi-wall move dropped the selection** — Clicking a tile on a grouped-but-inactive wall registered as a click on empty canvas.
+* **Rotation is now Pro everywhere** — It has always been a Pro feature, but the ↺ / ↻ buttons on the canvas never checked.
+
+---
+
 ## 🚀 What's New in v1.8.0 (Pixel Map Editor, Resolume, Redundancy Wizard)
 
 * **Pixel Map Editor** `Pro` — Design how your pixel maps look and reuse it across projects: parametric Dual/Triple colour with hue rotation and per-wall gradients, two uploaded images in place of the checkerboard, dial-able mosaic and X marks, a movable centre badge, restyled module labels, and a logo placed anywhere at any size. The centre badge, module labels and logo can each be switched off outright. Designs are assigned per wall from a live-thumbnail picker.

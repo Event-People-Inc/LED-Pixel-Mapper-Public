@@ -335,7 +335,7 @@
   <p class="section-label" style="text-align:center;">Documentation</p>
   <h1 style="font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 12px;">Comprehensive Technical Reference Manual</h1>
   <p style="max-width: 560px; margin: 0 auto; font-size: 16px; color: var(--text-secondary);">
-    Version 1.8.0 — Step-by-step instructions for setup, data routing, power distribution, redundancy, and exports.
+    Version 1.8.1 — Step-by-step instructions for setup, data routing, power distribution, redundancy, and exports.
   </p>
 </div>
 
@@ -355,6 +355,7 @@
           <li><a href="#hardware-library">1.4 Hardware Library</a></li>
           <li><a href="#preferences">1.5 Global Preferences</a></li>
           <li><a href="#safety">1.6 Undo, Confirmations &amp; Icons</a></li>
+          <li><a href="#multi-wall">1.7 Moving Several Walls at Once</a></li>
         </ul>
       </li>
       <li>
@@ -366,6 +367,7 @@
           <li><a href="#view-options">2.4 View Options &amp; Port Info</a></li>
           <li><a href="#auto-router">2.5 Auto Router</a></li>
           <li><a href="#replace-processor">2.6 Replacing a Processor</a></li>
+          <li><a href="#processor-groups">2.7 Processor Groups</a></li>
         </ul>
       </li>
       <li>
@@ -553,6 +555,15 @@
           browse for one.
         </li>
         <li>
+          <strong>5G processors:</strong> the COEX <strong>MX (5G)</strong> chassis and the
+          <strong>CX40 Pro</strong> carry a <kbd>5G</kbd> badge in the picker. Their ports take
+          <strong>5G receiver cards only</strong> (CA50E / XA50 Pro) — routing a tile with any
+          other receiver card class to them is blocked, so the badge is there before you choose.
+          The CX40 Pro is a 4K controller with <strong>6 × 5GBASE-T</strong> ports plus a 40G
+          optical port; note that its whole-device limit of <strong>9 million pixels</strong> is
+          well below what its six ports add up to, and it is the device figure that applies.
+        </li>
+        <li>
           <strong>Modular Processor Trees:</strong> H Series and COEX processors build a
           <em>Card ▸ CVT box ▸ ports</em> tree. Choose which output cards go in each chassis slot (copper,
           direct to wall, or fiber, fanning out to CVT expansion boxes), and how many CVT boxes each fiber
@@ -660,6 +671,43 @@
           reach them. Their confirmations say plainly that the deletion cannot be undone.
         </div>
       </div>
+      <div class="callout pro">
+        <span class="callout-icon">★</span>
+        <div class="callout-body">
+          <strong>Rotation is a Pro feature</strong>
+          <kbd>R</kbd> / <kbd>Shift</kbd>+<kbd>R</kbd>, <kbd>Cmd/Ctrl</kbd>+<kbd>L</kbd> /
+          <kbd>R</kbd>, and the ↺ / ↻ buttons on the canvas all require a Pro licence.
+        </div>
+      </div>
+
+      <h3 id="multi-wall">1.7 Moving Several Walls at Once</h3>
+      <p>
+        A wall has no position of its own — its tiles <em>are</em> its position. So moving a wall
+        means moving its tiles, and moving several walls together means selecting all of their
+        tiles at once.
+      </p>
+      <p>
+        <strong>Ctrl+click</strong> (Cmd on Mac) wall tabs to gather walls into a group. This is
+        what you want after splitting one wall into separate pieces for the pixel map: shifting the
+        whole arrangement a few pixels would otherwise mean nudging each piece on its own.
+      </p>
+      <p>
+        The grouped tabs light up while <strong>one wall stays active</strong> — the one you are
+        editing — so "which am I working on" and "which will move" stay two separate things. A
+        plain click on any tab drops the group and returns to ordinary single-wall working.
+      </p>
+      <p>Move the group four ways, all of which also work on an ordinary tile selection:</p>
+      <ul>
+        <li><strong>Arrow keys</strong> — 1 px a press, <kbd>Shift</kbd> for a larger step.</li>
+        <li><strong>Move by Δx / Δy</strong> — type an exact offset and apply it.</li>
+        <li><strong>X / Y</strong> — set the absolute position of the whole selection.</li>
+        <li><strong>Drag</strong> — grab any tile in the group and the rest follows.</li>
+      </ul>
+      <p>
+        The selection readout names how many walls are in the group, so a tile count larger than
+        the wall in front of you makes sense.
+      </p>
+
       <p>
         Icons mean one thing each throughout the app: an <strong>✕ closes, dismisses, clears or
         unassigns</strong>, and a <strong>bin deletes</strong>. Removing a tile from a circuit or a port
@@ -844,6 +892,40 @@
         management, ensuring that power draw remains within safe operational limits.
       </p>
 
+      <h3 id="processor-groups">2.7 Processor Groups</h3>
+      <p>
+        On a large rig the processor list gets long. Group processors into folders — the same idea
+        as <a href="#circuit-groups">Circuit Groups</a>, with the same <kbd>📁＋</kbd> button and the
+        same gestures.
+      </p>
+      <ul>
+        <li><strong>Create</strong> with <kbd>📁＋</kbd> at the top of the routing panel, or with the
+          <kbd>📁＋</kbd> on a group's own header to nest one inside it.</li>
+        <li><strong>File a processor</strong> by dragging it onto a group header.</li>
+        <li><strong>Take one back out</strong> by dragging it onto the strip at the top.</li>
+        <li><strong>Rename</strong> by double-clicking the group name; <strong>collapse</strong> by
+          clicking the arrow. Collapsed state is saved with the project.</li>
+        <li><strong>Delete</strong> a group and its processors are <em>kept</em> — they move up a
+          level, exactly as circuit groups behave.</li>
+      </ul>
+      <div class="callout note">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-body">
+          <strong>Grouping is organizational only</strong>
+          It changes no capacity, no routing and no port naming. The group's colour tints its
+          header and rail — it does <em>not</em> recolour the ports, because telling one port from
+          another is exactly what a data flow map is for.
+        </div>
+      </div>
+      <p>The organisation carries into the paperwork:</p>
+      <ul>
+        <li>The <strong>PDF</strong> Processor Requirements table is split into a section per
+          group, with ungrouped processors under their own heading at the end.</li>
+        <li>The <strong>production CSV</strong> gains a <strong>Group</strong> column carrying the
+          full path, e.g. <kbd>FOH Rack / Upper</kbd>.</li>
+        <li>The <strong>Data Flow Map</strong> legend names the group each port's processor sits in.</li>
+      </ul>
+
       <h3 id="circuit-gen">3.1 Circuit Generation</h3>
       <p>Power infrastructure is added via the right-hand panel:</p>
       <ul>
@@ -870,6 +952,17 @@
         Located beneath the circuit name is a connector badge. Clicking this cycles the physical connector
         type (Edison, PowerCON, True1). The software actively aggregates these connector profiles to
         generate accurate cabling manifests in the final production reports.
+      </p>
+
+      <p>
+        <strong>Moving a circuit's tiles:</strong> right-click any circuit to move its whole chain
+        onto a different circuit — the power-side equivalent of
+        <a href="#port-config">moving a port's tiles</a>. The destination list is sectioned by Soca
+        then by folder, collapsed by default with a count on each header, and scrolls. The
+        <strong>twofer structure comes across intact</strong>, so branches stay branches rather
+        than flattening into one chain, and the source circuit is <strong>emptied, not
+        deleted</strong> — it keeps its name, colour, connector and group. If the destination
+        already holds tiles, moving onto it replaces them, so it asks first and says how many.
       </p>
 
       <h3 id="load-calc">3.3 Electrical Load Calculations</h3>
@@ -917,6 +1010,19 @@
         select <kbd>Done with A</kbd> and map <em>Branch B</em>. The Canvas will display a split-node icon,
         and the circuit panel will track both legs independently while maintaining the aggregate electrical
         load.
+      </p>
+
+      <p>
+        While wiring a twofer, <kbd>Tab</kbd> finishes the branch you are on and moves to the next:
+        <kbd>Tab</kbd> to close Branch A and start Branch B, <kbd>Tab</kbd> again to close the
+        twofer. On a nested twofer it steps back up to the parent, exactly as the Done button does.
+        <kbd>Shift</kbd>+<kbd>Tab</kbd> steps back from B to A; on Branch A it does nothing, so a
+        stray keypress cannot throw away wiring.
+      </p>
+      <p>
+        In the docked circuit editor the branches are <strong>collapsible and start collapsed</strong>.
+        A closed branch still shows its tile count and number range — <kbd>⑂ Branch A &nbsp;6 · 7–12</kbd>
+        — so you keep the information and lose only the row-by-row detail. Click a header to open it.
       </p>
 
       <h3 id="circuit-groups">3.5 Circuit Groups &amp; Distros</h3>
