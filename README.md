@@ -21,7 +21,6 @@ LED Pixel Mapper (LPM) is a comprehensive software solution designed to streamli
 * **XD box and card capacity was wrong** — Those headers worked out their budget without knowing which processor they belonged to, so they used a generic halving that ignored the manufacturer's table and frame rate entirely. A 10-bit Tessera trunk at 60Hz read 2,625K instead of 4,200K. The ports inside were always right; only the header disagreed. Exports were never affected.
 * **Arrow keys moved tiles twice, and R rotated 180°** — Two keyboard handlers were both acting on the same keys. Shift+arrow jumped the step plus the snap grid.
 * **Multi-wall move dropped the selection** — Clicking a tile on a grouped-but-inactive wall registered as a click on empty canvas.
-* **Rotation is now Pro everywhere** — It has always been a Pro feature, but the ↺ / ↻ buttons on the canvas never checked.
 
 ---
 
