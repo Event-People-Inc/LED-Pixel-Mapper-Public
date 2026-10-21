@@ -1304,6 +1304,26 @@
       <h4 style="margin-top:20px;">Annotation &amp; colour options</h4>
       <ul>
         <li>
+          <strong>Port labels:</strong> prints each panel's port and its position in that run —
+          <kbd>A1</kbd>, <kbd>A2</kbd>, <kbd>A3</kbd> — in the tile's <strong>top-right</strong>
+          corner. With the pixel map live on the wall, every panel tells a tech which processor
+          output feeds it and where in the chain it sits, with no drawing in the other hand. These
+          are the same addresses the <strong>Port Label</strong> toggle shows on the canvas, so the
+          screen, the pixel map and the Data Flow Map all name a panel identically. Panels with no
+          routing are left blank. Off by default.
+          <div class="callout note" style="margin-top:10px;">
+            <span class="callout-icon">&#8505;&#65039;</span>
+            <div class="callout-body">
+              <strong>Port label vs. module row/column</strong>
+              Both can be on at once, and both produce strings like <kbd>A1</kbd> — so the corner is
+              what tells them apart. <strong>Top-left</strong> is the grid address: <em>where the
+              panel is</em>. <strong>Top-right</strong> is the port label: <em>what is plugged into
+              it</em>. On a wall whose first panel happens to be fed by port A they read the same;
+              anywhere else they differ, which is the point.
+            </div>
+          </div>
+        </li>
+        <li>
           <strong>Module Row/Column labels:</strong> prints each module's grid address in its top-left
           corner — row letter plus column number, so the top-left tile reads <kbd>A1</kbd> and it counts
           <kbd>A1 A2 A3</kbd> across and <kbd>A1 B1 C1</kbd> down. Every wall is addressed from its own A1
@@ -1721,6 +1741,24 @@
           <tr>
             <td><kbd>Shift</kbd> + <kbd>Tab</kbd></td>
             <td>Step back to the previous port or circuit.</td>
+          </tr>
+          <tr>
+            <td><kbd>Ctrl</kbd> + <kbd>T</kbd></td>
+            <td>
+              <strong>Circuit mode.</strong> Create a twofer on the active circuit and start wiring
+              Branch A — the same thing the right-click <kbd>Twofer Circuit</kbd> entry does. Press it
+              again while wiring a branch to <strong>nest</strong> a second twofer under that branch.
+              With <kbd>Tab</kbd> finishing each branch, a whole twofer wires up without the mouse.
+              <span class="badge-pro">Pro</span>
+            </td>
+          </tr>
+          <tr>
+            <td><kbd>Ctrl</kbd> + <kbd>1</kbd></td>
+            <td>
+              <strong>Circuit mode.</strong> Add a circuit, named exactly as the panel's
+              <kbd>Add</kbd> button names it. For a numbered batch, use the amount field on the
+              panel instead.
+            </td>
           </tr>
           <tr>
             <td>Click a routed tile again</td>
