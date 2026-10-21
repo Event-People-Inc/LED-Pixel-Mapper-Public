@@ -1301,6 +1301,62 @@
         </div>
       </div>
 
+      <h4 style="margin-top:20px;">Placing expander boxes on the canvas</h4>
+      <p>
+        An <strong>XD Box</strong> or <strong>CVT box</strong> is real hardware that hangs
+        somewhere on or behind the wall, and the crew rigging it needs to know where. You can put
+        one on the canvas and have it carry through to the drawings.
+      </p>
+      <ol>
+        <li>Enter <strong>Routing</strong> mode and select the wall it belongs to.</li>
+        <li><strong>Right-click the XD Box header</strong> in the Routing panel and choose
+          <kbd>Place in Position</kbd>. A rectangle appears centred under the wall.</li>
+        <li><strong>Drag it</strong> where the box really goes. <strong>Double-click</strong> it to
+          remove it.</li>
+      </ol>
+      <p>
+        The rectangle carries the box's <strong>name and the ports it feeds</strong> — e.g.
+        <kbd>XD Box 1</kbd> over <kbd>A–D</kbd> — because that second line is the wiring
+        instruction. It is drawn at its <strong>real size next to the panels</strong>
+        (482.6 × 88.5&nbsp;mm, a 19" 2U rack unit), using that wall's own pixel pitch. Its size is
+        stored in millimetres, so changing the wall's tile profile rescales the box rather than
+        leaving it quietly the wrong size.
+      </p>
+      <p>
+        Placed boxes appear on the <strong>Data Flow Map</strong> (per-wall and whole-canvas, in
+        all three styles, and mirrored correctly in a Back View), the <strong>PDF Production
+        Report</strong>, and the <strong>Technical Drawing</strong>. They are not drawn on the
+        Power Flow Map, since an expander is data hardware.
+      </p>
+      <div class="callout note">
+        <span class="callout-icon">&#8505;&#65039;</span>
+        <div class="callout-body">
+          <strong>CVT boxes come from the processor menu</strong>
+          Individual CVT boxes have no row of their own in the Routing panel — they are a
+          <kbd>+ CVT</kbd> / <kbd>&minus; CVT</kbd> counter on the processor line. So right-click
+          the <strong>processor</strong> instead: every placeable box on it is listed under
+          <strong>Place on Canvas</strong>, with the ports each one carries.
+        </div>
+      </div>
+      <div class="callout warn">
+        <span class="callout-icon">&#9888;&#65039;</span>
+        <div class="callout-body">
+          <strong>Two known limits</strong>
+          The <strong>CVT box size is currently the XD figure</strong> (19" × 3.5"), which is too
+          large — a real CVT8 is a much smaller brick, and none has been measured yet. Correcting
+          it later will not resize anything already placed, because each box stores its own size.
+          <br><br>
+          On the <strong>Technical Drawing</strong>, the page scale is still taken from the wall
+          alone. That is deliberate: those are the numbers on the dimension lines of a fabrication
+          drawing, and they must not grow because something was hung underneath. A box near the
+          wall lands in the dimension margin; one dragged a long way off may fall outside the page.
+        </div>
+      </div>
+      <p>
+        Turning an XD or CVT count down removes the boxes that went with it, and a project saved
+        with boxes whose hardware has since gone repairs itself when you open it.
+      </p>
+
       <h4 style="margin-top:20px;">Annotation &amp; colour options</h4>
       <ul>
         <li>
