@@ -555,6 +555,15 @@
           browse for one.
         </li>
         <li>
+          <strong>Adding several at once:</strong> the add form carries an <strong>amount</strong>
+          field beside the name. Set it to 3 and you get three, named <kbd>MX40 Pro 1</kbd>,
+          <kbd>MX40 Pro 2</kbd>, <kbd>MX40 Pro 3</kbd>. Numbering continues past anything already
+          there, so a second batch carries on rather than colliding with the first, and the whole
+          batch is a single <kbd>Ctrl</kbd>+<kbd>Z</kbd>. Leaving the amount at 1 behaves exactly
+          as it always has — the name is used as typed, with no number appended. For a modular
+          model the XD box or card configuration you choose is applied to every one in the batch.
+        </li>
+        <li>
           <strong>5G processors:</strong> the COEX <strong>MX (5G)</strong> chassis and the
           <strong>CX40 Pro</strong> carry a <kbd>5G</kbd> badge in the picker. Their ports take
           <strong>5G receiver cards only</strong> (CA50E / XA50 Pro) — routing a tile with any
@@ -944,6 +953,13 @@
           circuit. The system will auto-sequence nomenclature if a custom name is not provided.
         </li>
         <li>
+          <strong>Adding several circuits at once:</strong> the single-circuit form has an
+          <strong>amount</strong> field beside the name, working the same way as the processor one —
+          type a name and a count, and they are created numbered sequentially. Each gets its own
+          colour from the palette, and the last one added becomes active so routing starts where
+          you expect.
+        </li>
+        <li>
           <strong>Soca Splays:</strong> Select the <kbd>Soca</kbd> button to introduce a standardized
           6-circuit breakout bundle. Entire Soca bundles can be globally assigned to a specific wall to
           prevent cross-contamination of power documentation.
@@ -1271,6 +1287,19 @@
           <kbd>≤</kbd> means it is irregular and the figure is its overall extent.
         </li>
       </ul>
+
+      <div class="callout note">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-body">
+          <strong>Reading redundancy on a Data Flow Map</strong>
+          Where a run is protected, the <strong>first tile of the chain carries two names</strong>:
+          the primary port in <strong>green</strong> on top, and the <strong>backup port in red</strong>
+          beneath it. The colour is the distinction — green is the main feed, red is the redundancy
+          port that picks those same panels up. The last tile of a protected chain keeps its small
+          red <kbd>BU.&lt;port&gt;</kbd> badge, which marks where the run ends. The same labelling
+          appears in the PDF report, so the paperwork and the screen agree.
+        </div>
+      </div>
 
       <h4 style="margin-top:20px;">Annotation &amp; colour options</h4>
       <ul>
