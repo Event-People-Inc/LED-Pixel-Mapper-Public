@@ -1319,8 +1319,9 @@
         upright on the wall, and the drawing dimensions the wall a rigger will actually hang.
       </p>
       <p>
-        The setting <strong>saves with the project</strong>, so you set it once per wall rather than
-        re-ticking it on every export. It is undoable.
+        The setting <strong>saves with the project</strong> and <strong>stays until you change
+        it</strong>, so you set it once per wall rather than re-ticking it on every export.
+        <kbd>Ctrl</kbd>+<kbd>Z</kbd> reverses it like any other edit.
       </p>
       <div class="callout tip">
         <span class="callout-icon">&#128161;</span>
@@ -1342,9 +1343,11 @@
           matching the routing you did. In the PDF this means a wall&rsquo;s pixel map and drawing
           show the room while its flow maps show the canvas.
           <br><br>
-          The option only appears while <strong>every</strong> panel on the wall is turned. Add one
-          unturned panel and it disappears and stops applying, because a half-turned wall has no
-          swapped footprint to export.
+          The button is <strong>offered</strong> only on a wall where every panel is turned, since
+          that is the signature of this situation. That is just a guess at what you meant, though —
+          once you switch it on, your choice is kept and keeps working. If the wall later stops
+          being entirely turned, the button stays visible and turns <strong>amber</strong> to point
+          that out, rather than disappearing or quietly stopping.
         </div>
       </div>
       <h4 style="margin-top:20px;">Placing expander boxes on the canvas</h4>
