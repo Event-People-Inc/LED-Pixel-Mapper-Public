@@ -6,6 +6,25 @@ LED Pixel Mapper (LPM) is a comprehensive software solution designed to streamli
 
 ---
 
+## 🚀 What's New in v1.8.2 (Resolume Composition, Redundancy Rebuild & As-Built Exports)
+
+* **Resolume: a composition canvas drives the Input Selection** `Pro` — A slice has **two** rectangles: the **Input Selection** (where on the composition it samples) and the **Output Selection** (where that lands on the physical output). LPM set both from the same place, so the input was only ever a copy of the output. Now name one canvas as the **composition** — the real-life room layout, the same canvas you already use for the wiring drawings — and every slice samples its own region out of it, with the composition's size written into the preset. An **Output Selection list with a ＋ button** picks which canvases become screens, in order.
+* **Walls pair to a *region* of a composition wall** `Pro` — A composition wall does not have to be fed by one output wall, and matching names cannot describe it when it isn't: a wide wall wired as **one piece** for the crew, driven by **two processors taking half each**, has no naming that makes it a one-to-one pairing. Walls now pair by name, by **shared tiles** (copy walls off the composition and LPM knows which region they came from, however you repacked them), or by **layout**. A layout match is treated as a guess and shown as one — it is only accepted when the walls sharing a composition wall account for **all** of it, and the panel lets you review and correct every pairing before it is stored in the project.
+* **Brompton redundancy, rebuilt around how the rigs are actually cabled** — Port redundancy and processor redundancy are **independent axes**, not three exclusive methods, and the Tessera manual says so outright. Running closed loop on an SX40 already in a processor-redundancy pair used to **silently delete the pairing**. The wizard now asks which of **four topologies** you are building, including the full both-at-once system that was impossible before, and partial loops are recognised as legal.
+* **Export a rotated wall as it is built** — People squeeze a landscape wall into the canvas as a portrait block of turned panels and rotate the content in the media server. The pixel map and technical drawing can now be exported **the way the wall is physically built**, with the text still upright. LPM offers it when it spots a wall made entirely of turned panels, and your choice is carried in the project until you change it.
+* **Expander boxes placed on the canvas** — Position XD and CVT boxes at their true physical size, and they carry through to the data maps, the PDF and the technical drawing.
+* **Port labels on pixel maps** — A new annotation option printing each tile's port label, so the panel's data address and what is plugged into it can be told apart.
+* **Add several processors or circuits at once** — An amount field beside the name. Set it to 3 and get three, numbered on from anything already there, as a single undo.
+* **The backup port is named where its cable plugs in** — The small **BU.B3** pill is gone. A protected run now shows the backup port's **full name in red on the last tile of the chain**, which is physically where its cable lands.
+* **Ctrl+T starts a twofer, Ctrl+1 adds a circuit** — Two circuit-mode shortcuts, so a whole twofer can be wired without the mouse.
+
+### Fixes
+
+* **Adding a single circuit did not mark the project unsaved** — Close it and there was no prompt, so the circuit was simply lost. A batch of two or more was always fine.
+* **Long button text ran off the Brompton wizard** — A button does not wrap its text, so the longest method description set every card's width and the modal grew sideways. The processor context menu had the same hole.
+
+---
+
 ## 🚀 What's New in v1.8.1 (Organisation, Accuracy & Speed)
 
 * **Processor Groups** — Organise a big rig into folders in the Routing panel, the same way circuits already work and with the same 📁＋ button. Drag processors in, nest groups, collapse them. Deleting a group keeps its processors. The organisation reaches the paperwork: the PDF's Processor Requirements table splits into a section per group, the production CSV gains a **Group** column, and the data flow map legend names each port's group.
