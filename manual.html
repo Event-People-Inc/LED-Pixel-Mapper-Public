@@ -1650,7 +1650,9 @@
         Builds a Resolume <strong>Advanced Output</strong> preset from the project, so the map you have
         already planned becomes the screen setup instead of being rebuilt slice by slice in Arena.
         <strong>Each canvas becomes a screen</strong> at its own resolution and <strong>each wall becomes
-        a slice</strong>, named after the wall and placed exactly where it sits on the canvas.
+        a slice</strong>, named after the wall and placed exactly where it sits on the canvas. A canvas can
+        also be nominated as the <strong>composition</strong>, which drives every slice&rsquo;s Input
+        Selection &mdash; see below.
       </p>
       <p>
         Non-rectangular walls keep their shape. An L, T or cross exports as a native
@@ -1658,10 +1660,76 @@
         use — a wall of <strong>detached blocks</strong> becomes one slice per block so the gap is never
         mapped as wall, and an enclosed <strong>hole</strong> is reported rather than silently dropped.
       </p>
+      <h4 style="margin-top:20px;">Input Selection and Output Selection</h4>
       <p>
-        Resolume holds one composition per preset while every LPM canvas starts at its own 0,0, so
-        canvases are <strong>tiled side by side across the composition</strong> — each screen samples its
-        own region instead of all of them stacking in the top-left corner.
+        A Resolume slice carries <strong>two</strong> rectangles: the <strong>Input Selection</strong>,
+        which is where on the composition it takes its pixels from, and the <strong>Output
+        Selection</strong>, which is where those pixels land on the physical output. LPM used to set
+        both from the same wall on the same canvas, so the input was only ever a copy of the output.
+      </p>
+      <p>
+        Name one canvas as the <strong>composition</strong> and the two come apart:
+      </p>
+      <ul>
+        <li>Each slice&rsquo;s <strong>Input Selection</strong> is the wall of that name on the
+          <strong>composition canvas</strong>.</li>
+        <li>Each slice&rsquo;s <strong>Output Selection</strong> is that wall&rsquo;s position on
+          <strong>its own processor canvas</strong>.</li>
+        <li>The composition canvas&rsquo;s size is written into the preset, so Arena knows how big the
+          show is.</li>
+        <li>The composition canvas becomes the <strong>source, not a screen</strong> &mdash; it does not
+          appear as a duplicate output.</li>
+      </ul>
+      <div class="callout tip">
+        <span class="callout-icon">&#128161;</span>
+        <div class="callout-body">
+          <strong>The way to set a show up</strong>
+          Build <strong>one canvas as the real-life room</strong> &mdash; every screen where it actually
+          sits &mdash; and use it for the wiring drawings the crew carries. Then build <strong>a canvas
+          per processor</strong> holding the walls that processor drives, packed however the feed needs
+          them. Give the walls the <strong>same names</strong> on both. Set the real-life canvas as the
+          composition, add the processor canvases as outputs, and every feed crops its own region out
+          of the show exactly as it does in the room.
+        </div>
+      </div>
+      <p>
+        <strong>Wall name is the link.</strong> A wall called <kbd>SR Column</kbd> on a processor canvas
+        pairs with <kbd>SR Column</kbd> on the composition however the walls are ordered, so reordering
+        or renaming walls never silently re-points a slice.
+      </p>
+
+      <h4 style="margin-top:20px;">Choosing the outputs</h4>
+      <p>
+        Under the composition dropdown, the <strong>Output Selection</strong> list decides which
+        canvases become screens, and in what order &mdash; one row per processor feed, with
+        <kbd>+ Add output canvas</kbd> to add one and <kbd>&#10005;</kbd> to drop one. It starts
+        pre-filled with every canvas except the composition, so a normal rig needs no clicks; a project
+        holding scratch or superseded canvases can simply leave them out.
+      </p>
+      <p>
+        Underneath, it names any <strong>composition walls nothing is driving yet</strong>, so you can
+        see at a glance whether your outputs cover the whole show.
+      </p>
+      <div class="callout note">
+        <span class="callout-icon">&#8505;&#65039;</span>
+        <div class="callout-body">
+          <strong>Leave the dropdown alone and nothing changes</strong>
+          It defaults to <em>&ldquo;Each canvas is its own input (tiled side by side)&rdquo;</em>, which is
+          how the export has always worked: Resolume holds one composition per preset while every LPM
+          canvas starts at its own 0,0, so the canvases are laid out left to right and each screen
+          samples its own slot rather than all of them stacking in the top-left corner.
+          <br><br>
+          That tiling only existed because nothing told LPM what the composition <em>was</em>. Name a
+          composition canvas and it switches off &mdash; there are no slots, because every screen crops
+          the one picture.
+        </div>
+      </div>
+      <p>
+        With a composition set, the export will <strong>refuse</strong> a wall on a processor canvas that
+        has no wall of that name on the composition, naming the wall rather than just reporting a count.
+        A wall built as a <strong>different shape</strong> on the two canvases is a warning, and its Input
+        Selection falls back to the bounding box. A composition wall that <strong>nothing drives</strong>
+        is only information &mdash; usually it is a screen fed from somewhere else.
       </p>
       <ul>
         <li><strong>Save preset as…</strong> writes the file anywhere you like.</li>
