@@ -1175,21 +1175,50 @@
         the manual alternative — the wizard is for getting a standard topology right quickly, not a
         replacement for hand-pairing.
       </p>
-      <p>Three steps: pick the method, pick the hardware, review what will be written.</p>
+      <p>Three steps: pick the system you are building, pick the hardware, review what will be written.</p>
+      <div class="callout note">
+        <span class="callout-icon">&#8505;&#65039;</span>
+        <div class="callout-body">
+          <strong>Port redundancy and controller redundancy are separate things</strong>
+          They protect against different failures and neither implies the other. A second SX40 covers
+          a <em>controller</em> dying; it does nothing if a cable or a trunk fails. Looped trunks cover
+          a <em>cable</em> failing; they do nothing if the controller dies. The wizard offers all four
+          combinations rather than making you choose one.
+        </div>
+      </div>
       <ul>
         <li>
-          <strong>Closed Loop</strong> — the wall's chain is cabled back on itself, so a break anywhere
-          along it still leaves every panel fed from one end or the other.
+          <strong>Port redundancy only</strong> &mdash; trunks looped <kbd>A&rarr;B</kbd> and
+          <kbd>C&rarr;D</kbd> on one controller. The wall is driven from <strong>A and C only</strong>;
+          B and D become pure backups, cabled to the far end of each chain. A break anywhere along a
+          chain still leaves every panel fed from one end or the other.
         </li>
         <li>
-          <strong>Processor Redundancy</strong> — a second controller stands by for the first, taking
-          over wholesale if it fails.
+          <strong>Controller redundancy only</strong> &mdash; two SX40s cabled to the X1/X2 inputs of
+          the <strong>same</strong> XD boxes. The standby drives nothing until failover. On its own
+          this gives <strong>no port-level protection</strong>.
         </li>
         <li>
-          <strong>Mirrored Reverse</strong> — a second SX40 on the same XD boxes with the wall routed
-          backwards.
+          <strong>Full system</strong> &mdash; both at once: four XD boxes looped in pairs, every box
+          also cabled to the second controller. This is the complete Brompton setup.
+        </li>
+        <li>
+          <strong>Mirrored Reverse</strong> (unorthodox) &mdash; two controllers, each with its
+          <strong>own</strong> XD boxes, the second routed backwards.
         </li>
       </ul>
+      <div class="callout tip">
+        <span class="callout-icon">&#128161;</span>
+        <div class="callout-body">
+          <strong>Already used all four trunks? Mirrored Reverse is your way out</strong>
+          Port redundancy needs B and D free to back up A and C, so a wall spread across all four
+          trunks cannot have it &mdash; there is nothing left to back up with. If that is where you
+          are, either re-plan the wall onto A and C, or use Mirrored Reverse: a second controller with
+          its own four XD boxes, routed backwards. The wizard says this when it stops you, rather than
+          leaving you to work it out.
+        </div>
+      </div>
+
       <p>
         Candidate loops are offered by <strong>each model's own rule</strong>, so most impossible
         configurations never appear on the menu at all: an SX40 offers "Trunk A loops back to Trunk B",
@@ -1202,15 +1231,34 @@
         <span class="callout-icon">⚠️</span>
         <div class="callout-body">
           <strong>Mirrored Reverse is a field technique, not a Brompton topology</strong>
-          It is labelled as such in the wizard. It is not documented by Brompton — it is what crews do
-          in practice, and it works, but you should know which of the three you are signing off on.
+          It is labelled as such in the wizard. It is not documented by Brompton &mdash; it is what
+          crews do in practice, and it works, but you should know which of the four you are signing
+          off on. It is also the only one that needs <strong>two sets</strong> of XD boxes: in the
+          other topologies the boxes are shared, and the equipment list counts them once.
         </div>
       </div>
       <p>
-        Finishing commits the groups, the port pairings and the processor roles as
-        <strong>one undo</strong>. A port that becomes a backup has its tiles cleared, because it mirrors
-        its primary rather than carrying its own load.
+        Finishing commits the groups, the port pairings and the controller roles as
+        <strong>one undo</strong>. A port that becomes a backup carries no tiles, because it mirrors
+        its primary rather than driving its own load.
       </p>
+      <div class="callout warn">
+        <span class="callout-icon">&#9888;&#65039;</span>
+        <div class="callout-body">
+          <strong>What the wizard will refuse</strong>
+          These are rigs that cannot be cabled, so they stop you rather than warning you:
+          <ul style="margin:6px 0 0">
+            <li>A <strong>backup trunk already carrying its own panels</strong>. It means the wall was
+              planned across trunks a port-redundant rig cannot use. (Older versions let you continue
+              and then silently deleted those panels.)</li>
+            <li>A chain of more than <strong>50 fixtures</strong>. A loop has to reach the controller
+              at <em>both</em> ends, so the limit is the cable run, not the pixel budget &mdash; a
+              chain can be well inside its capacity and still be impossible to cable.</li>
+            <li>A <strong>single-output controller</strong> such as the Tessera T1, which has nothing
+              to loop back to.</li>
+          </ul>
+        </div>
+      </div>
 
       <h3 id="redundancy-plan">4.5 The Redundancy Plan List</h3>
       <p>
