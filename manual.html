@@ -1693,10 +1693,64 @@
         </div>
       </div>
       <p>
-        <strong>Wall name is the link.</strong> A wall called <kbd>SR Column</kbd> on a processor canvas
-        pairs with <kbd>SR Column</kbd> on the composition however the walls are ordered, so reordering
-        or renaming walls never silently re-points a slice.
+        <strong>Wall name is the first link.</strong> A wall called <kbd>SR Column</kbd> on a processor
+        canvas pairs with <kbd>SR Column</kbd> on the composition however the walls are ordered, so
+        reordering or renaming walls never silently re-points a slice.
       </p>
+
+      <h4 style="margin-top:20px;">When the names don&rsquo;t line up</h4>
+      <p>
+        Matching names is the tidy case, but it is not the only one, because a composition wall does
+        not have to be fed by a single output wall. A common build has one wide wall wired as
+        <em>one piece</em> on the composition &mdash; so the crew sees it as one wall &mdash; while two
+        processors each drive half of it. There is no name that makes that a one-to-one pairing.
+      </p>
+      <p>
+        So LPM pairs a wall to a <strong>region</strong> of a composition wall, and looks for that
+        region three ways:
+      </p>
+      <ul>
+        <li><strong>By name</strong>, as above.</li>
+        <li><strong>By shared tiles</strong> &mdash; if you built the output canvas by copying walls off
+          the composition, they are literally the same tiles, so LPM knows exactly which region they
+          came from however you repacked them. Names are irrelevant here.</li>
+        <li><strong>By layout</strong> &mdash; failing both, LPM looks for somewhere the wall&rsquo;s tiles
+          land exactly on composition tiles.</li>
+      </ul>
+      <div class="callout warn">
+        <span class="callout-icon">&#9888;&#65039;</span>
+        <div class="callout-body">
+          <strong>A layout match is a guess, and it is shown as one</strong>
+          On a wall built from identical tiles, lots of positions fit equally well &mdash; and if two
+          sides of a rig are the same size, each one fits the other&rsquo;s place perfectly. Matching
+          the layout proves an arrangement is <em>possible</em>, never that it is the one you meant.
+          <br><br>
+          Two rules keep it honest. A region another wall certainly feeds is never offered to a guess;
+          and a layout match only counts if the walls sharing that composition wall
+          <strong>account for all of it</strong>. If they add up, the export goes ahead. If they only
+          cover part of it, LPM says so &mdash; naming the wall and how far it got, which is usually a
+          sign you have not added every output canvas yet.
+        </div>
+      </div>
+
+      <h4 style="margin-top:20px;">Reviewing the pairings</h4>
+      <p>
+        The panel lists every slice under the composition wall it samples, tagged with how it was
+        paired: <kbd>by name</kbd>, <kbd>same tiles</kbd>, <kbd>only fit</kbd>, <kbd>your choice</kbd>,
+        or <kbd>guessed</kbd>. Only the <kbd>guessed</kbd> rows need you &mdash; they carry a dropdown
+        of the positions that actually fit, so you can move one without editing any walls. The order
+        of your <strong>Output Selection</strong> list decides the first guess, so reordering it is
+        often quicker than correcting rows one by one.
+      </p>
+      <div class="callout tip">
+        <span class="callout-icon">&#128161;</span>
+        <div class="callout-body">
+          <strong>Your choice sticks</strong>
+          Writing the preset saves the pairings into the project, so they come back next time and are
+          never guessed again &mdash; even if you later edit the walls. It undoes like any other edit,
+          and it stays until you change it.
+        </div>
+      </div>
 
       <h4 style="margin-top:20px;">Choosing the outputs</h4>
       <p>
